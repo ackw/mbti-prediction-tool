@@ -1,5 +1,5 @@
 import streamlit as st
-# import pandas as pd
+import pandas as pd
 from predictor import predict, load_model
 
 st.set_page_config(
