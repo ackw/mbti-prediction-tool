@@ -1,6 +1,7 @@
 streamlit
-tensorflow-cpu
+tensorflow
 keras
 numpy
+pandas
 requests
 googledrivedownloader
