@@ -11,10 +11,10 @@ st.write("""# MBTI Prediction Tool""")
 # refer to : https://docs.streamlit.io/library/api-reference
 # refer to : https://docs.streamlit.io/en/stable/api.html#magic-commands
 
-# st.write('*The Data*! :sunglasses:')
-# df = pd.read_csv("https://drive.google.com/uc?id=1NWGrm705AS3xOWrDFfETswf2saoPCkyu")
+st.write('*The Data*! :sunglasses:')
+df = pd.read_csv("https://drive.google.com/uc?id=1NWGrm705AS3xOWrDFfETswf2saoPCkyu")
 # df = df.head(100)
-# df
+df
 # st.dataframe(df) 
 
 # st.write('*SenticNet* Results! :beach_with_umbrella:')
