@@ -1,0 +1,6 @@
+streamlit
+tensorflow-cpu
+keras
+numpy
+requests
+googledrivedownloader
