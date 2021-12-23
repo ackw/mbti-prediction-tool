@@ -11,8 +11,8 @@ from keras.preprocessing import sequence
 # from nltk.tokenize import word_tokenize
 import pickle
 
-# GDFILE = "1INsoSroHvKwBmBXq2VlLlmeAv_b9rv9B" #IE predictor
-GDFILE = "18flRD4XATu-pXYr1a9ElLqDCLjdAUk90" #BILSTM All MODEL
+GDFILE = "1UwWhrEjVNQtPx8W11yqQPNMrY0J1jfkL" #CNN All MODEL
+# GDFILE = "18flRD4XATu-pXYr1a9ElLqDCLjdAUk90" #BILSTM All MODEL
 PKFILE = "15WvsUDR7YDkgTmZjqc2mrQAN8SICebg_" #BILSTM All TOKENIZER
 
 
@@ -37,7 +37,6 @@ def load_model():
 def predict(model, input):
     print(input)
     # class_names = ['INFJ', 'ENTP', 'INTP', 'ENTJ', 'INFP', 'ENFJ', 'INTJ', 'ENFP', 'ISTP', 'ISFJ', 'ESFP', 'ESTP','ISFP','ESFJ','ISTJ', 'ESTJ']
-    # class_names = ['Introvert', 'Extrovert']
     class_names = ['ENFJ', 'ENFP', 'ENTJ', 'ENTP', 'ESFJ', 'ESFP', 'ESTJ', 'ESTP', 'INFJ', 'INFP', 'INTJ', 'INTP', 'ISFJ', 'ISFP', 'ISTJ', 'ISTP'] #for BiLSTM_All
 
     # for wiki-news
