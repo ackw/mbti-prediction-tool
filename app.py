@@ -14,17 +14,38 @@ st.write("""# MBTI Prediction Tool""")
 with st.spinner("Loading the genie..."):
 	model = load_model()
 
-st.write('*The Data*! :sunglasses:')
-df = pd.read_csv("https://drive.google.com/uc?id=1NWGrm705AS3xOWrDFfETswf2saoPCkyu")
-df = df.sample(frac=1).reset_index(drop=True)
-df
-# st.dataframe(df) 
+# sidebar
+st.sidebar.markdown('## MBTI Types')
+st.sidebar.markdown('**Analysts :** [INTJ, INTP, ENTJ, ENTP]')
+st.sidebar.markdown('**Diplomats :** [INFJ, INFP, ENFJ, ENFP]')
+st.sidebar.markdown('**Sentinels :** [ISTJ, ISFJ, ESTJ, ESFJ]')
+st.sidebar.markdown('**Explorers :** [ISTP, ISFP, ESTP, ESFP]')
 
-# st.write('*SenticNet* Results! :beach_with_umbrella:')
-# df = pd.read_csv("https://drive.google.com/uc?id=1uDjEO077joBTeVgwwq7bDht0LJb8NST4")
-# df = df.sample(frac=1).reset_index(drop=True)
-# df = df.head(1000)
-# df
+st.sidebar.markdown('## What each letter mean')
+st.sidebar.markdown('I = Introvert, E = Extrovert')
+st.sidebar.markdown('N = Intuition, S = Sensing')
+st.sidebar.markdown('T = Thinking, F = Feeling')
+st.sidebar.markdown('J = Judging, P = Perceiving')
+
+
+
+
+
+df = pd.read_csv("https://drive.google.com/uc?id=1NWGrm705AS3xOWrDFfETswf2saoPCkyu")
+
+st.subheader("Let's guess your MBTI...")
+user_input = st.text_area(label= "Enter some text here:" , help = "Type something here, then click anywhere outside the box!")
+btn = st.button("Guess!")
+
+if (user_input != "") or btn:
+    with st.spinner("Hmmm..."):
+        prediction = predict(model, user_input)
+    print(prediction)
+    st.write("The genie thinks you're an ", prediction, "🔮")
+
+
+
+
 
 # if st.checkbox("Show dataset with selected columns"):
 #     # get the list of columns
@@ -37,19 +58,11 @@ df
 
 # st.write(df.label.value_counts())
 
-st.subheader("Let's guess your MBTI...")
-user_input = st.text_area(label= "Enter some text here:" , help = "Type something here, then click anywhere outside the box!")
-btn = st.button("Guess!")
+st.subheader("What fuels the genie?")
 
-if (user_input != "") or btn:
-    with st.spinner("Hmmm..."):
-        prediction = predict(model, user_input)
-    print(prediction)
-    st.write("The genie thinks you're an ", prediction, "🔮")
-    # st.balloons()
-
-# btn = st.button("Party!")
-# if btn:
-#     st.balloons()
+with st.container():
+    st.write('The Data! :sunglasses:')
+    df = df.sample(frac=1).reset_index(drop=True)
+    st.dataframe(df)
 
 # nice example: https://gist.github.com/dataprofessor/bfd5908a197a7e8a6bdf0206cc166cdc
