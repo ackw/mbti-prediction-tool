@@ -13,22 +13,24 @@ import pickle
 
 GDFILE = "1UwWhrEjVNQtPx8W11yqQPNMrY0J1jfkL" #CNN All MODEL
 # GDFILE = "18flRD4XATu-pXYr1a9ElLqDCLjdAUk90" #BILSTM All MODEL
-PKFILE = "15WvsUDR7YDkgTmZjqc2mrQAN8SICebg_" #BILSTM All TOKENIZER
+TKFILE = "15WvsUDR7YDkgTmZjqc2mrQAN8SICebg_" #TOKENIZER
 
 
 def load_model():
     filepath = "model/model.h5"
     picklepath = "model/tokenizer.pickle"
     if not os.path.exists('model'):
-        	os.mkdir('model')
-	
+        os.mkdir('model')
+    
+    # download model
     if not os.path.exists(filepath):
     	from google_drive_downloader import GoogleDriveDownloader as gdd
     	gdd.download_file_from_google_drive(file_id=GDFILE, dest_path=filepath)
 
+    # download tokenizer
     if not os.path.exists(picklepath):
         from google_drive_downloader import GoogleDriveDownloader as gdd
-        gdd.download_file_from_google_drive(file_id=PKFILE, dest_path=picklepath)
+        gdd.download_file_from_google_drive(file_id=TKFILE, dest_path=picklepath)
         
     model = keras.models.load_model(filepath)
     
