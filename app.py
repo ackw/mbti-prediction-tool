@@ -118,6 +118,7 @@ with st.sidebar.expander("4 Dimensions"):
 
 # df3 = pd.concat([d1, d2, d3, d4], ignore_index=True)
 # df3
+# Dictionary style definition of figure object
 
 
 # Section one: Prediction --------------------------------------------------------------
@@ -142,17 +143,72 @@ elif selected_sect == 'Data Visualization':
     st.title("Data Visualization")
     st.subheader("What fuels the genie?")
     
+    # donuts
+    fig = {
+    "data": [
+        {
+        "values": [6675, 1999],
+        "labels": ["I","E"],
+        "domain": {"x": [0.2, 0.5], "y": [0.5, .95]},
+        "name": "IE",
+        "text":["IE"],
+        "textposition":"inside",
+        "hoverinfo":"label+percent+name",
+        "hole": .4,
+        "type": "pie"
+        },
+        {
+        "values": [7477, 1197],
+        "labels": ["N","S"],
+        "domain": {"x": [0.51, 0.8], "y": [0.5, .95]},
+        "name": "NS",
+        "text":["NS"],
+        "textposition":"inside",
+        "hoverinfo":"label+percent+name",
+        "hole": .4,
+        "type": "pie"
+        },
+        {
+        "values": [4693, 3981],
+        "labels": ["T","F"],
+        "domain": {"x": [0.2, 0.5], "y": [0, 0.45]},
+        "name": "TF",
+        "text":["TF"],
+        "textposition":"inside",
+        "hoverinfo":"label+percent+name",
+        "hole": .4,
+        "type": "pie"
+        },
+        {
+        "values": [5240, 3434],
+        "labels": ["J","P"],
+        "domain": {"x": [0.51, 0.8], "y": [0, 0.45]},
+        "name": "JP",
+        "text":["JP"],
+        "textposition":"inside",
+        "hoverinfo":"label+percent+name",
+        "hole": .4,
+        "type": "pie"
+        }],
+        
+     "layout": {
+            # "title":'MBTI Traits - Donuts',
+            "piecolorway":px.colors.qualitative.Pastel2
+         }
+    }
+
+    st.plotly_chart(fig)
+
     # main plot
     df3 = pd.DataFrame({
         "axis": ["IE", "NS", "TF", "JP"],
-        "first": [6675, 7477, 4693, 5240],
-        "second": [1999, 1197, 3981, 3434]
+        "trait 1": [6675, 7477, 4693, 5240],
+        "trait 2": [1999, 1197, 3981, 3434]
     })
-
    
-    fig = px.bar(df3, x="axis", y=["first", "second"], height=400,color_discrete_sequence=px.colors.qualitative.Pastel2)
+    fig = px.bar(df3, x="axis", y=["trait 1", "trait 2"], height=400, color_discrete_sequence=px.colors.qualitative.Pastel2)
     # fig = px.bar(df3, x="axis", y=["first", "second"], barmode='group', height=400) # non-stacked (grouped plot)
-
+    fig.update_layout(legend_title_text='')
     st.plotly_chart(fig)
 
     # expanders
