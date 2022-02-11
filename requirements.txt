@@ -9,3 +9,5 @@ nltk
 altair
 seaborn
 plotly
+wordcloud
+textblob
