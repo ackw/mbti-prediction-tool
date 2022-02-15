@@ -31,15 +31,24 @@ from textblob import TextBlob
 
 # Model Initialisation ----------------------------------------------------------------------
 
+# 1. Model trained with Kaggle Data
+
 filepath = "model/model.h5"
 picklepath = "model/tokenizer.pickle"
+max_sentence_length = 764 
+
+# 2. Model trained with Reddit Data
+
+# filepath = "model/model_reddit.h5"
+# picklepath = "model/tokenizer_reddit.pickle"
+# max_sentence_length = 881 
+
 
 def predict(model, input):
     print("User input : ", input)
     class_names = ['ENFJ', 'ENFP', 'ENTJ', 'ENTP', 'ESFJ', 'ESFP', 'ESTJ', 'ESTP', 'INFJ', 'INFP', 'INTJ', 'INTP', 'ISFJ', 'ISFP', 'ISTJ', 'ISTP']
 
     # GloVe
-    max_sentence_length = 764 
     with open(picklepath, 'rb') as handle:
         loaded_tokenizer = pickle.load(handle)
         seq = loaded_tokenizer.texts_to_sequences([input])
