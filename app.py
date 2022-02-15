@@ -123,10 +123,11 @@ if selected_sect == 'MBTI Prediction Tool':
             # Subjectivity
             sc = TextBlob(user_input).sentiment.subjectivity
             if sc > 0.5:
-                subjectivity = 'Highly Opinionated'
+                subjectivity = 'Opinionated'
 
             elif sc < 0.5:
-                subjectivity = 'Not really Opinionated'
+                subjectivity = 'Subjective'
+
             else:
                 subjectivity = 'Somewhat Subjective and Objecive'
 

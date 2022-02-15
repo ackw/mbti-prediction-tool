@@ -4,4 +4,5 @@ The MBTI Prediction Tool is available here: https://share.streamlit.io/ackw/mbti
 
 ### Run locally:
 `pip install -r requirements.txt`
+<br>
 `streamlit run app.py `
