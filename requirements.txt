@@ -1,5 +1,5 @@
 streamlit
-tensorflow-cpu
+tensorflow
 keras
 numpy
 pandas

@@ -32,21 +32,11 @@ from textblob import TextBlob
 
 # Model Initialisation ----------------------------------------------------------------------
 
-GDFILE = "1UwWhrEjVNQtPx8W11yqQPNMrY0J1jfkL" #CNN MODEL
-TKFILE = "15WvsUDR7YDkgTmZjqc2mrQAN8SICebg_" #TOKENIZER
+# GDFILE = "1UwWhrEjVNQtPx8W11yqQPNMrY0J1jfkL" #CNN MODEL
+# TKFILE = "15WvsUDR7YDkgTmZjqc2mrQAN8SICebg_" #TOKENIZER
 
 filepath = "model/model.h5"
 picklepath = "model/tokenizer.pickle"
-
-def load_model():
-    # download model
-    if not os.path.exists(filepath):
-    	from google_drive_downloader import GoogleDriveDownloader as gdd
-    	gdd.download_file_from_google_drive(file_id=GDFILE, dest_path=filepath)
-
-    model = keras.models.load_model(filepath)
-    
-    return model
 
 def predict(model, input):
     print("User input : ", input)
@@ -72,9 +62,9 @@ st.set_page_config(
     layout="centered"
 )
 
-# load tensorflow model
+# load model
 with st.spinner("Loading the genie..."):
-    model = load_model()
+    model = keras.models.load_model(filepath)
 
 # Datasets
 df = pd.read_csv("datasets/mbti_1_cleaned_all.csv")
