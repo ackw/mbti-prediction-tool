@@ -1,5 +1,4 @@
 # imports ----------------------------------------------------------------------
-
 import streamlit as st
 import pandas as pd
 
@@ -31,9 +30,6 @@ s = SentimentIntensityAnalyzer()
 from textblob import TextBlob
 
 # Model Initialisation ----------------------------------------------------------------------
-
-# GDFILE = "1UwWhrEjVNQtPx8W11yqQPNMrY0J1jfkL" #CNN MODEL
-# TKFILE = "15WvsUDR7YDkgTmZjqc2mrQAN8SICebg_" #TOKENIZER
 
 filepath = "model/model.h5"
 picklepath = "model/tokenizer.pickle"

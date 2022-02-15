@@ -4,9 +4,7 @@ keras
 numpy
 pandas
 requests
-googledrivedownloader
 nltk
-altair
 seaborn
 plotly
 wordcloud
