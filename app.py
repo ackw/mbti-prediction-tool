@@ -140,7 +140,8 @@ if selected_sect == 'MBTI Prediction Tool':
 # Section two: Visualisation ------------------------------------------------------------
 
 elif selected_sect == 'Data Visualization':
-    st.title("Data Visualization with PersonalityCafe Data")
+    st.title("Data Visualization")
+
 
     # sidebar
     st.sidebar.markdown("***")
@@ -160,7 +161,7 @@ elif selected_sect == 'Data Visualization':
 
     # Selection Dropdown
     sections = ['Text Analysis', 'Personality Types']
-    selected_viz = st.selectbox("Choose a Visualization:", sections)
+    selected_viz = st.selectbox("Explore the PersonalityCafe Data:", sections)
 
     # Selection one
     if selected_viz == 'Personality Types':
