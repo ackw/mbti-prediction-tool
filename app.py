@@ -29,20 +29,7 @@ nltk.download("vader_lexicon")
 s = SentimentIntensityAnalyzer()
 from textblob import TextBlob
 
-# Model Initialisation ----------------------------------------------------------------------
-
-# 1. Model trained with Kaggle Data
-
-filepath = "model/model.h5"
-picklepath = "model/tokenizer.pickle"
-max_sentence_length = 764 
-
-# 2. Model trained with Reddit Data
-
-# filepath = "model/model_reddit.h5"
-# picklepath = "model/tokenizer_reddit.pickle"
-# max_sentence_length = 881 
-
+# Initialisation ----------------------------------------------------------------------
 
 def predict(model, input):
     print("User input : ", input)
@@ -59,7 +46,6 @@ def predict(model, input):
 
     return prediction
 
-# Initialisation ----------------------------------------------------------------------
 
 st.set_page_config(
     page_title="Myer-Brigging this up...",
@@ -67,33 +53,15 @@ st.set_page_config(
     layout="centered"
 )
 
-# load model
-with st.spinner("Loading the genie..."):
-    model = keras.models.load_model(filepath)
-
 # Datasets
 df = pd.read_csv("datasets/mbti_1_cleaned_all.csv")
 df2 = pd.read_csv("datasets/data.csv")
 
 # Sidebar ------------------------------------------------------------------------------
 
+st.sidebar.subheader("Choose a Feature")
 sections = ['MBTI Prediction Tool', 'Data Visualization']
-selected_sect = st.sidebar.selectbox("Choose a feature:", sections)
-
-st.sidebar.markdown("***")
-st.sidebar.caption("What do they mean?")
-
-with st.sidebar.expander("16 MBTI Types"):
-    st.write('**Analysts**: INTJ, INTP, ENTJ, ENTP')
-    st.write('**Diplomats**: INFJ, INFP, ENFJ, ENFP')
-    st.write('**Sentinels**: ISTJ, ISFJ, ESTJ, ESFJ')
-    st.write('**Explorers**: ISTP, ISFP, ESTP, ESFP')
-
-with st.sidebar.expander("4 Dimensions"):
-    st.write('**IE**: Introvert, Extrovert')
-    st.write('**NS**: Intuition, Sensing')
-    st.write('**TF**: Thinking, Feeling')
-    st.write('**JP**: Judging, Perceiving')
+selected_sect = st.sidebar.selectbox("Predict or Visualize:", sections)
 
 # Section one: Prediction --------------------------------------------------------------
 
@@ -101,13 +69,41 @@ if selected_sect == 'MBTI Prediction Tool':
     st.title("MBTI Prediction Tool")
     st.subheader("Let's guess your MBTI...")
     user_input = st.text_input(value="", label= "Enter some text here" , help = "Type something here, then press the Enter!")
+
+    # simple text cleaning
     user_input = user_input.lower()
+    user_input = re.sub(r'[^\w\s]','', user_input)
+    user_input = re.sub(r"\d", '', user_input)
+
     print(user_input)
+
+    # sidebar
+    mdls = ['CNN + PersonalityCafe Data', 'CNN + Reddit Data']
+    selected_mod = st.radio(label = 'Choose a Model for Prediction', options = mdls)
+
+    # load models
+    # 1. Model trained with Kaggle Data
+    if selected_mod =='CNN + PersonalityCafe Data':
+        filepath = "model/model_kaggle.h5"
+        picklepath = "model/tokenizer_kaggle.pickle"
+        max_sentence_length = 764 
+
+        with st.spinner("Loading the genie..."):
+            model = keras.models.load_model(filepath)
     
+    # 2. Model trained with Reddit Data
+    else:
+        filepath = "model/model_reddit.h5"
+        picklepath = "model/tokenizer_reddit.pickle"
+        max_sentence_length = 881 
+        
+        with st.spinner("Loading the genie..."):
+            model = keras.models.load_model(filepath)
+
     # MBTI Prediction Tool
     if (user_input != ""):
-        if len(user_input) < 10 or user_input.isnumeric()==True or user_input.isalnum()==True:
-            st.error("Invalid text! Enter text with more than 10 letters with no numbers.")
+        if len(user_input) < 10:
+            st.error("Invalid text! Enter text with more than 10 letters")
         else:
             # MBTI
             with st.spinner("Hmmm..."):
@@ -129,18 +125,38 @@ if selected_sect == 'MBTI Prediction Tool':
             # Sentiment
             score = s.polarity_scores(user_input)
             if score['compound']>0:             
+                st.subheader("Hmm..")
                 st.write("The genie thinks you're an ", prediction, "+ the words are ", subjectivity, "and Positive😃")
 
             elif score['compound']==0:    
+                st.subheader("Hmm..")
                 st.write("The genie thinks you're an ", prediction, "+ the words are ", subjectivity, "and Neutral😶")
 
             elif score['compound']<0:    
+                st.subheader("Hmm..")
                 st.write("The genie thinks you're an ", prediction, "+ the words are ", subjectivity, "and Negative😢")
+            
 
 # Section two: Visualisation ------------------------------------------------------------
 
 elif selected_sect == 'Data Visualization':
-    st.title("Data Visualization")
+    st.title("Data Visualization with PersonalityCafe Data")
+
+    # sidebar
+    st.sidebar.markdown("***")
+    st.sidebar.caption("What do they mean?")
+
+    with st.sidebar.expander("16 MBTI Types"):
+        st.write('**Analysts**: INTJ, INTP, ENTJ, ENTP')
+        st.write('**Diplomats**: INFJ, INFP, ENFJ, ENFP')
+        st.write('**Sentinels**: ISTJ, ISFJ, ESTJ, ESFJ')
+        st.write('**Explorers**: ISTP, ISFP, ESTP, ESFP')
+
+    with st.sidebar.expander("4 Dimensions"):
+        st.write('**IE**: Introvert, Extrovert')
+        st.write('**NS**: Intuition, Sensing')
+        st.write('**TF**: Thinking, Feeling')
+        st.write('**JP**: Judging, Perceiving')
 
     # Selection Dropdown
     sections = ['Text Analysis', 'Personality Types']
