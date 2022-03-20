@@ -1,7 +1,7 @@
-# Myer-Briggs Text Classification Tool
+# MBTI Prediction Tool
 
-The MBTI Prediction Tool is available here: <br>
-https://share.streamlit.io/ackw/mbti-prediction-tool/main/app.py
+> **App** @ https://share.streamlit.io/ackw/mbti-prediction-tool/main/app.py <br>
+> **Models** @ https://github.com/ackw/mbti-prediction
 
 ### Run locally:
 `pip install -r requirements.txt`
