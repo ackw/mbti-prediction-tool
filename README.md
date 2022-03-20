@@ -1,7 +1,7 @@
 # MBTI Prediction Tool
 
-> **App** @ https://share.streamlit.io/ackw/mbti-prediction-tool/main/app.py <br>
-> **Models** @ https://github.com/ackw/mbti-prediction
+> **App** @ [link](https://share.streamlit.io/ackw/mbti-prediction-tool/main/app.py) <br>
+> **Models** @ [link](https://github.com/ackw/mbti-prediction)
 
 ### Run locally:
 `pip install -r requirements.txt`
