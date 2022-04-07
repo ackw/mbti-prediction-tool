@@ -1,6 +1,8 @@
 # MBTI Prediction Tool
 
-> **App** @ [link](https://share.streamlit.io/ackw/mbti-prediction-tool/main/app.py) <br>
+> **App** @ [link](https://share.streamlit.io/ackw/mbti-prediction-tool/main/app.py)<br>
+> **Demo** @ [link](https://youtu.be/zxKSBiNOqKQ)<br>
+> -- the app is currently unavailable due to a bandwidth usage limit. (Updated: 7 Apr 2022)<br>
 <!-- > **Models** @ [link](https://github.com/ackw/mbti-prediction) // currently a private repo -->
 
 ### Run locally:
