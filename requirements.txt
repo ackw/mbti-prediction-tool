@@ -9,3 +9,4 @@ seaborn
 plotly
 wordcloud
 textblob
+click==7.1.2
