@@ -1,7 +1,7 @@
 # MBTI Prediction Tool
 
 <!-- > **App** @ [link](https://share.streamlit.io/ackw/mbti-prediction-tool/main/app.py)<br> -->
-> **Demo** @ [link](https://youtu.be/zxKSBiNOqKQ)<br>
+> **Demo** @ [link](https://youtu.be/hR6-Z3A01Tw)<br>
 > Backup Model Files @ [link](https://drive.google.com/drive/folders/11hstfX7Jo7WNiAURPjTKQ4fStmkC7Ekq?usp=sharing)<br>
 > -- the app is currently unavailable on the website due to a bandwidth usage limit. (Updated: 7 Apr 2022)<br>
 <!-- > -- backup available @ [link](https://share.streamlit.io/andrelchew/mbti/main/app.py) (Updated: 8 Apr 2022) -->
